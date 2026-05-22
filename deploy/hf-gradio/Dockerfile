@@ -23,6 +23,8 @@ RUN pip install --upgrade pip && \
     rm -rf /root/.cache /tmp/*
 
 COPY app.py config.py logging_config.py ./
+COPY api/__init__.py ./api/__init__.py
+COPY api/agent_tools/ ./api/agent_tools/
 COPY assistants/ ./assistants/
 COPY evaluation/ ./evaluation/
 COPY llm/ ./llm/

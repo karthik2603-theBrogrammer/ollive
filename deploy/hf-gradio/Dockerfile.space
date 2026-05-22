@@ -1,0 +1,35 @@
+# Hugging Face Docker Space (repo root). See deploy/hf-gradio/push_to_hf.sh
+FROM python:3.11-slim-bookworm
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m -u 1000 user
+
+USER user
+ENV PATH="/home/user/.local/bin:$PATH" \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    GRADIO_SERVER_NAME=0.0.0.0 \
+    PORT=7860
+
+WORKDIR /app
+
+COPY --chown=user requirements.txt requirements.txt
+RUN pip install --upgrade pip && \
+    pip install torch --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir -r requirements.txt
+
+COPY --chown=user app.py config.py logging_config.py ./
+COPY --chown=user api/__init__.py ./api/__init__.py
+COPY --chown=user api/agent_tools ./api/agent_tools
+COPY --chown=user assistants ./assistants
+COPY --chown=user evaluation ./evaluation
+COPY --chown=user llm ./llm
+COPY --chown=user memory ./memory
+COPY --chown=user tools ./tools
+
+EXPOSE 7860
+CMD ["python", "app.py"]
