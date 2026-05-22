@@ -1,0 +1,30 @@
+gradio>=5.0.0
+python-dotenv>=1.0.0
+
+# LangChain stack
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-classic>=1.0.0
+langchain-huggingface>=0.1.0
+langchain-openai>=0.2.0
+langchain-anthropic>=0.3.0
+
+# Provider SDKs (used by LangChain integrations)
+huggingface-hub>=0.27.0
+transformers>=4.40.0
+torch>=2.0.0
+openai>=1.60.0
+anthropic>=0.43.0
+
+# Public benchmark datasets
+datasets>=2.19.0
+tqdm>=4.66.0
+
+# Public OSS API service (see api/requirements.txt)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+opentelemetry-api>=1.28.0
+opentelemetry-sdk>=1.28.0
+openinference-instrumentation-langchain>=0.1.0
+opentelemetry-instrumentation-fastapi>=0.49b0
