@@ -190,8 +190,13 @@ def build_ui() -> gr.Blocks:
 
 
 def main() -> None:
+    import os
+
     demo = build_ui()
-    demo.launch(server_name="127.0.0.1", server_port=7860)
+    demo.launch(
+        server_name=os.getenv("GRADIO_SERVER_NAME", "0.0.0.0"),
+        server_port=int(os.getenv("PORT", "7860")),
+    )
 
 
 if __name__ == "__main__":

@@ -16,11 +16,14 @@ from api.settings import ApiConfig
 
 
 def main() -> None:
+    import os
+
     config = ApiConfig()
+    port = int(os.getenv("PORT", str(config.port)))
     uvicorn.run(
         "api.main:app",
         host=config.host,
-        port=config.port,
+        port=port,
         reload=False,
     )
 
