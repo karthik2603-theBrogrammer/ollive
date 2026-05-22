@@ -127,13 +127,6 @@ curl "https://KN123-ollive-api.hf.space/v1/traces"
 open "https://KN123-ollive-api.hf.space/v1/traces/ui"
 ```
 
-Run API eval:
-
-```bash
-curl -X POST "https://KN123-ollive-api.hf.space/v1/eval/run" \
-  -H "Content-Type: application/json" \
-  -d '{"benchmark_samples":1,"seed":42,"assistants":["oss"]}'
-```
 
 ## Docker
 
